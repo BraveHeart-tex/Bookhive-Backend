@@ -6,7 +6,7 @@ import com.bookhive.springbootlibrary.utils.ExtractJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http:localhost:5173")
+@CrossOrigin("http://localhost:5173")
 @RestController
 @RequestMapping("/api/books")
 public class BookController {

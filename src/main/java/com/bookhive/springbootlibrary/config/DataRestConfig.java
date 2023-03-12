@@ -13,7 +13,7 @@ import static org.springframework.http.HttpMethod.*;
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
 
-    private String theAllowedOrigins = "http://localhost:5173";
+    private final String theAllowedOrigins = "http://localhost:5173";
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config,
