@@ -46,4 +46,13 @@ public class BookService {
 
         return book.get();
     }
+
+    public Boolean checkoutBookByUser(String userEmail, Long bookId) {
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+        return validateCheckout != null;
+    }
+
+    public int currentLoansCount(String userEmail) {
+        return checkoutRepository.findBooksByUserEmail(userEmail).size();
+    }
 }
