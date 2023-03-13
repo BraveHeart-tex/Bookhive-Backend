@@ -17,11 +17,22 @@ public class ReviewController {
 
     @PostMapping("/secure")
     public void postReview(@RequestHeader(value = "Authorization") String token,
-                           @RequestBody ReviewRequest reviewRequest) throws Exception{
+                           @RequestBody ReviewRequest reviewRequest) throws Exception {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
-        if (userEmail == null){
+        if (userEmail == null) {
             throw new Exception("User email is not available");
         }
         reviewService.postReview(userEmail, reviewRequest);
+    }
+
+    @GetMapping("/secure/user/book")
+    public Boolean reviewBookByUser(@RequestHeader(value = "Authorization") String token,
+                                    @RequestParam Long bookId) throws Exception {
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+
+        if (userEmail == null) {
+            throw new Exception("User email is not available");
+        }
+        return reviewService.userReviewListed(userEmail, bookId);
     }
 }
