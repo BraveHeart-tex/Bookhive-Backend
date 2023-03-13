@@ -23,6 +23,5 @@ public class ReviewController {
             throw new Exception("User email is not available");
         }
         reviewService.postReview(userEmail, reviewRequest);
-
     }
 }

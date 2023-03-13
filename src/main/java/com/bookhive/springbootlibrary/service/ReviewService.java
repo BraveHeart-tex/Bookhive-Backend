@@ -16,13 +16,10 @@ import java.time.LocalDateTime;
 @Transactional
 public class ReviewService {
 
-    private BookRepository bookRepository;
     private ReviewRepository reviewRepository;
 
     @Autowired
-    public ReviewService(BookRepository bookRepository,
-                         ReviewRepository reviewRepository) {
-        this.bookRepository = bookRepository;
+    public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
@@ -43,5 +40,10 @@ public class ReviewService {
         }
         review.setDate(LocalDateTime.now());
         reviewRepository.save(review);
+    }
+
+    public Boolean userReviewListed(String userEmail,Long bookId) {
+        Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, bookId);
+        return validateReview != null;
     }
 }
